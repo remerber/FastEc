@@ -21,6 +21,8 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
     compile project(':latte-ec')
     annotationProcessor project(':latte-compiler')
+    compile 'com.facebook.stetho:stetho:1.3.1'
 }
