@@ -1,12 +1,17 @@
 package example.fastec.com.wang.latte.app;
 
 import android.os.Handler;
+import android.support.annotation.NonNull;
 
+import com.blankj.utilcode.util.Utils;
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import example.fastec.com.wang.latte.delegates.web.event.Event;
+import example.fastec.com.wang.latte.delegates.web.event.EventManager;
 
 /**
  * Created by HP on 2017/7/30.
@@ -39,6 +44,7 @@ public class Configurator {
     public final void configure() {
         initIcons();
         LATTE_CONFIGS.put(ConfigType.CONFIG_READY.name(), true);
+        Utils.init(Latte.getApplicationContext());
     }
 
     private void initIcons() {
@@ -57,6 +63,17 @@ public class Configurator {
 
     public final Configurator withIcon(IconFontDescriptor descriptor) {
         ICONS.add(descriptor);
+        return this;
+    }
+
+    public final Configurator withJavascriptInterface(@NonNull String name) {
+        LATTE_CONFIGS.put(ConfigType.JAVASCRIPT_INTERFACE.name(), name);
+        return this;
+    }
+
+    public Configurator withWebEvent(@NonNull String name, @NonNull Event event) {
+        final EventManager manager = EventManager.getInstance();
+        manager.addEvent(name, event);
         return this;
     }
 

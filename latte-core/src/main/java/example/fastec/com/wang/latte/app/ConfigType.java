@@ -9,6 +9,6 @@ public enum ConfigType {
     API_HOST,
     APPLICATION_CONTEXT,
     ICON,
-    HANDLER
-
+    HANDLER,
+    JAVASCRIPT_INTERFACE
 }

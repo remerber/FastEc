@@ -29,7 +29,7 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
     //确保初始化一次Banner，防止重复Item加载
     private boolean mIsInitBanner = false;
 
-    private MultipleRecyclerAdapter(@Nullable List<MultipleItemEntity> data) {
+    protected MultipleRecyclerAdapter(@Nullable List<MultipleItemEntity> data) {
         super(data);
         init();
 

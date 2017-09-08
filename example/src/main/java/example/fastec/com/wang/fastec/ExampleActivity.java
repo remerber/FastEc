@@ -5,12 +5,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.widget.Toast;
 
+import cn.jpush.android.api.JPushInterface;
 import example.fastec.com.wang.latte.activities.ProxyActivity;
 import example.fastec.com.wang.latte.delegates.LatteDelegate;
 import example.fastec.com.wang.latte.ec.laucher.LauncherDelegate;
 import example.fastec.com.wang.latte.ec.main.EcBottomDelegate;
 import example.fastec.com.wang.latte.ec.sign.ISignListener;
-import example.fastec.com.wang.latte.ec.sign.SignInDelegate;
 import example.fastec.com.wang.latte.ui.laucher.ILauncherListener;
 import example.fastec.com.wang.latte.ui.laucher.OnLauncherFinishTag;
 import qiu.niorgai.StatusBarCompat;
@@ -27,6 +27,18 @@ public class ExampleActivity extends ProxyActivity implements ILauncherListener,
             actionBar.hide();
         }
         StatusBarCompat.translucentStatusBar(this, true);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JPushInterface.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        JPushInterface.onResume(this);
     }
 
     @Override
@@ -55,7 +67,8 @@ public class ExampleActivity extends ProxyActivity implements ILauncherListener,
 
             case NOT_SIGNED:
                 Toast.makeText(this, "启动结束，用户没有登陆", Toast.LENGTH_SHORT).show();
-                startWithPop(new SignInDelegate());
+                // startWithPop(new SignInDelegate());
+                startWithPop(new EcBottomDelegate());
 
 
                 break;
